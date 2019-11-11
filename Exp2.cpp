@@ -5,9 +5,9 @@
 void keyword(char str[10])
 {
 	if(strcmp("for",str)==0||strcmp("while",str)==0||strcmp("do",str)==0||strcmp("int",str)==0||strcmp("float",str)==0||strcmp("char",str)==0||strcmp("double",str)==0||strcmp("printf",str)==0||strcmp("switch",str)==0||strcmp("case",str)==0)
-		printf("\n%s is a keyword",str);
+		printf("%s is a keyword\n",str);
 	else
-		printf("\n%s is an identifier",str);
+		printf("%s is an identifier\n",str);
 }
 int main()
 {
@@ -42,45 +42,51 @@ int main()
 			}
 			putc(' ',f2);
 			ungetc(c,f1);
-			else if(c==' '||c=='\t')
-				printf(" ");
-			else if(c=='\n')
-				lineno++;
-			else
-				putc(c,f3);
-		}
-		fclose(f2);
-		fclose(f3);
-		fclose(f1);
-		printf("\nThe Numbers in the program are:\n");
-		for(j=0;j<i;j++)
-		{	printf("  %d",num[j]);
-		}
-		printf("\n");
-		f2=fopen("Identifier","r");
-		k=0;
-		printf("The Keywords and Identifiers in the program are:\n");
-		while((c=getc(f2))!=EOF)
-		{	if(c!=' ')
-			{
-				str[k++]=c;
-			}
-			else
-			{
-				str[k]='\0';
-				keyword(str);
-				k=0;
-			}
-		}
-		fclose(f2);
-		f3=fopen("Special_Characters","r");
-		printf("\nThe Special Characters in the program are:\n");
-		while((c=getc(f3))!=EOF)
-		{
-			printf("  %c",c);
-		}
-		printf("\n");
-		fclose(f3);
-		printf("Total no. of lines in the program are: %d\n",lineno);
+		}	
+		else if(c==' '||c=='\t')
+			printf(" ");
+		else if(c=='\n')
+			lineno++;
+		else
+			putc(c,f3);
 	}
+	fclose(f2);
+	fclose(f3);
+	fclose(f1);
+	f2=fopen("Identifier","r");
+	k=0;
+	printf("The Keywords and Identifiers in the program are:\n");
+	while((c=getc(f2))!=EOF)
+	{	
+		if(c!=' ')
+		{
+			str[k++]=c;
+		}
+		else
+		{
+			str[k]='\0';
+			keyword(str);
+			k=0;
+		}
+	}
+	fclose(f2);
+	printf("\nThe Numbers in the program are:\n");
+	for(j=0;j<i;j++)
+	{	
+		printf("%d  ",num[j]);
+	}
+	printf("\n");
+	f3=fopen("Special_Characters","r");
+	printf("\nThe Special Characters in the program are:\n");
+	while((c=getc(f3))!=EOF)
+	{
+		if(c=='\"')
+			printf("\"  ");
+		else
+			printf("%c  ",c);
+	}
+	printf("\n");
+	fclose(f3);
+	printf("\n");
+	printf("Total no. of lines in the program are: %d\n",lineno+1);
 }
