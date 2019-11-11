@@ -14,7 +14,7 @@ int main()
 	FILE *f1,*f2,*f3;
 	char c,str[10],st1[10];
 	int num[100],lineno=0,tokenvalue=0,i=0,j=0,k=0;
-	f1=fopen("Exp2_Input.cpp","r");
+	f1=fopen("Input.cpp","r");
 	f2=fopen("Identifier","w");
 	f3=fopen("Special_Characters","w");
 	while((c=getc(f1))!=EOF)
